@@ -1,4 +1,17 @@
+# Reflection 
+# 1
+# Python makes it easier to automate repetitive tasks like reading CSV files,
+# calculating totals, and creating reports. Excel is better for quickly
+# viewing data, making charts, and editing individual cells.
+
+# 2
+# A business could use an append mode log to track daily sales reports.
+# Append mode is useful because it adds new records without deleting
+# previous entries, letting the business review past activity.
+
 import csv
+
+from datetime import datetime
 
 total_revenue = 0
 original_count = 0
@@ -76,3 +89,12 @@ with open("data/sales.csv", "r") as file:
 
 for product in sorted(sales_summary):
     print(f"{product}: ${sales_summary[product]:.2f}")
+
+
+#ex8
+current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+with open("data/run_log.txt", "a") as log_file:
+    log_file.write(f"{current_time} - Total Revenue: ${total_revenue:.2f}\n")
+
+print("Run log updated successfully!")
