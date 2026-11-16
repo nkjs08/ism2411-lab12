@@ -54,3 +54,25 @@ print(f"\nDictReader Total Revenue: ${dict_total_revenue:.2f}")
 
 # csv.reader works well when the column positions are known.
 # csv.DictReader is easier when you want to access columns by name.
+
+#ex7
+
+sales_summary = {}
+
+with open("data/sales.csv", "r") as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+        product = row["product"]
+        price = float(row["price"])
+        quantity = int(row["quantity"])
+
+        total = price * quantity
+
+        if product in sales_summary:
+            sales_summary[product] += total
+        else:
+            sales_summary[product] = total
+
+for product in sorted(sales_summary):
+    print(f"{product}: ${sales_summary[product]:.2f}")
